@@ -20,9 +20,11 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@headlessui/vue": "^1.6.6",
         "daisyui": "^2.18.1",
         "laravel-vue-pagination": "^3.0.0",
         "material-icons": "^1.11.4",
+        "vue3-promise-dialog": "^0.3.4",
         "vuejs-confirm-dialog": "^0.4.1"
     }
 }

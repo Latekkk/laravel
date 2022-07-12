@@ -4,7 +4,7 @@ import BreezeGuestLayout from '@/Layouts/Guest.vue';
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Head,  useForm } from '@inertiajs/inertia-vue3';
 
 
 const props = defineProps({
@@ -52,7 +52,6 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-
 
                 <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Update dir
