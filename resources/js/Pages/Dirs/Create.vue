@@ -18,10 +18,8 @@ const props = defineProps({
 
 const form = useForm({
     title: '',
-    photoURL: null,
+    image: null,
     user_id: '',
-    created_at: '',
-    updated_at: ''
 });
 
 const submit = () => {
@@ -46,8 +44,8 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <BreezeLabel for="photoURL" value="PhotoURL" />
-                    <BreezeInput type="file" @input="form.photoURL = $event.target.files[0]"  />
+                    <BreezeLabel for="image" value="Image" />
+                    <BreezeInput type="file" @input="form.image = $event.target.files[0]"  />
                     <!-- <BreezeInput id="photoURL" type="file" class="mt-1 block w-full" v-model="form.photoURL" required
                     autocomplete="photoURL" /> -->
                 </div>

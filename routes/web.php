@@ -7,6 +7,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\DirController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

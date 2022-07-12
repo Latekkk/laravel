@@ -9,6 +9,7 @@ class Dir extends Model
     protected $fillable = [
         'title',
         'photoURL',
+        'user_id'
     ];
 
      public function notes()

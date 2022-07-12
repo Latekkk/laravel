@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoredirRequest extends FormRequest
+class DirRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoredirRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StoredirRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'image' => [$this->isMethod("post")? 'required':'nullable', 'file'],
+            'title' => 'required|string'
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Note;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 
+use App\Repositories\NoteRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,11 +21,20 @@ use Ramsey\Uuid\Type\Integer;
 class NoteController extends Controller
 {
 
+
+    public function __construct(NoteRepository $noteRespositry)
+    {
+        $this->repository = $noteRespositry;
+        $this->authorizeResource(Note::class);
+    }
+
+
     /**
      * Display the registration view.
      *
      * @return \Inertia\Response
      */
+
 
 
 
