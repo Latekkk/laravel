@@ -1,6 +1,6 @@
 <template>
-    <button class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out text-white hover:text-black"
-            @click="toggleModal = !toggleModal">Remove
+    <button class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out text-white hover:text-black btn btn-secondary"
+            @click="toggleModal = !toggleModal" style="color: white; text-align: center; width: 100px;">Remove
     </button>
     <div v-if="toggleModal" class="relative l" style="z-index: 100">
             <div class="fixed p-4 w-full max-w-md h-full md:h-auto top-50 left-50">

@@ -5,7 +5,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Pagination from "@/Components/Pagination.vue";
 import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import {Head} from '@inertiajs/inertia-vue3';
-import ModalRemoveDir from "@/Components/ModalRemoveDir.vue";
+import ModalDialog from "@/Components/ModalDialog.vue";
 
 const props = defineProps({
     canLogin: Boolean,
@@ -20,7 +20,6 @@ const props = defineProps({
 </script>
 
 
-
 <template>
     <BreezeAuthenticatedLayout>
         <Head title="List dirs"/>
@@ -30,7 +29,7 @@ const props = defineProps({
                     <div class="flex-none">
                         <div class="avatar" style="padding: 10px">
                             <div class="w-24 mask mask-squircle">
-                                <img v-bind:src="'../'+dir.photoURL" alt="">
+                                <img alt="" v-bind:src="'../'+dir.photoURL">
                             </div>
                         </div>
                     </div>
@@ -60,7 +59,8 @@ const props = defineProps({
                                                     style="color: white; text-align: center;width: 100px">Edit
                                 </BreezeDropdownLink>
 
-                                   <ModalRemoveDir :note="note"  message="Are you sure you want remove this element?"></ModalRemoveDir>
+                                <ModalDialog :note="note"
+                                             message="Are you sure you want remove this element?"></ModalDialog>
                             </div>
                         </div>
                     </div>
