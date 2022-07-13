@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(UsersSeeder::class);
-        $this->call(DirSeeder::class);
-        $this->call(NoteSeeder::class);
+//        $this->call(DirSeeder::class);
+//        $this->call(NoteSeeder::class);
     }
 }

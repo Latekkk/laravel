@@ -7,6 +7,9 @@ use Illuminate\Database\Seeder;
 
 class DirSeeder extends Seeder
 {
+
+
+    protected $model = Dir::class;
     /**
      * Run the database seeds.
      *

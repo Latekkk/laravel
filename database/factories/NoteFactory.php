@@ -22,7 +22,7 @@ class NoteFactory extends Factory
             //
             'title' => fake() -> title,
             'description' => Str::random(10),
-            'dir_id' => rand(1,2),
+//            'dir_id' => rand(1,2),
         ];
     }
 }
