@@ -4,7 +4,7 @@ import BreezeGuestLayout from '@/Layouts/Guest.vue';
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Head,  useForm } from '@inertiajs/inertia-vue3';
 
 
 const props = defineProps({
@@ -12,22 +12,18 @@ const props = defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    users: Object,
     dir: Object,
 });
 
 const form = useForm({
     title: props.dir.title,
-    photoURL: null,
-    user_id: '',
-    created_at: '',
-    updated_at: '',
+    image: null,
     _method: 'put'
 });
 
 const submit = () => {
     console.log(form)
-    form.post(route('dirs.update', props.dir))
+    form.post(route('dirs.update', props.dir ))
 };
 </script>
 
@@ -47,12 +43,11 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="photoURL" value="PhotoURL" />
-                <BreezeInput type="file" @input="form.photoURL = $event.target.files[0]"  />
+                <BreezeLabel for="image" value="Image" />
+                <BreezeInput type="file" @input="form.image = $event.target.files[0]"  />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-
 
                 <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Update dir

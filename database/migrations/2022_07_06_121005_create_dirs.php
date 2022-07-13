@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('dirs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('photoURL');
+            $table->string('photoURL')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

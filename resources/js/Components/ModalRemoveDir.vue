@@ -30,11 +30,11 @@ export default {
     props:{
         toggleModal: false,
         message: '',
-        note: Object,
+        dir: Object,
     },
     methods: {
         submit(){
-            this.$inertia.delete(route('notes.destroy',this.note));
+            this.$inertia.delete(route('dirs.destroy',this.dir));
         }
     }
 }

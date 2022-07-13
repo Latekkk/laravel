@@ -22,6 +22,6 @@ createInertiaApp({
             .use(ConfirmDialog)
             .mount(el);
     },
-});
+})
 
 InertiaProgress.init({ color: '#4B5563' });

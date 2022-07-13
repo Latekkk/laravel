@@ -2,29 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\DirRequest;
 use App\Models\Dir;
 use App\Models\Note;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-
+use App\Repositories\DirRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
-
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class DirController extends Controller
 {
+
+    protected DirRepository $repository;
+
+    /**
+     * @param DirRepository $dirRepository
+     */
+
+    public function __construct(DirRepository $dirRepository)
+    {
+        $this->repository = $dirRepository;
+        $this->authorizeResource(Dir::class);
+    }
 
     /**
      * Display the registration view.
      *
      * @return \Inertia\Response
      */
-
 
     public function index()
     {
@@ -33,7 +41,8 @@ class DirController extends Controller
         return Inertia::render(
             'Dirs/Index',
             [
-                'dirs' => $dir, 'users' => $user
+                'dirs' => $dir,
+                'users' => $user
             ]
         );
     }
@@ -61,27 +70,13 @@ class DirController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param DirRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(DirRequest $request): RedirectResponse
     {
-        $dir = new Dir($request->all());
-        $dir['user_id'] = auth()->user()->id;
-        if ($request->hasFile('photoURL')) {
-
-            $image = $request->file('photoURL');
-
-            $ext = $image->getClientOriginalExtension();
-
-            $location = "images/" . $dir['user_id'] . "/" . $dir['title'] . "/" . "img.$ext";
-            Storage::put("public/" . $location, $image->getContent());
-
-            $dir['photoURL'] = "storage/" . $location;
-        }
-
-
-        $dir->save();
+        $request['user_id'] = auth()->user()->id;
+        $this->repository->create($request);
         return redirect()->route('dirs.index');
     }
 
@@ -117,62 +112,29 @@ class DirController extends Controller
                 'dir' => $dir
             ]
         );
-        return 0;
     }
 
 
-    public function update(Request $request, Dir $dir): RedirectResponse
+    public function update(DirRequest $request, Dir $dir): RedirectResponse
     {
-        if ($request->title != "") {
-            $dir->title = $request->title;
-        }
-
-
-        if ($request->hasFile('photoURL')) {
-
-            $image = $request->file('photoURL');
-
-            $ext = $image->getClientOriginalExtension();
-
-            $location = "images/" . $dir['user_id'] . "/" . $dir['title'] . "/" . "img.$ext";
-            Storage::deleteDirectory($location);
-            Storage::put("public/" . $location, $image->getContent());
-
-            $dir['photoURL'] = "storage/" . $location;
-        }
-
-
-        $dir->save();
+        $this->repository->update($request, $dir);
         return redirect()->route('dirs.index');
     }
 
 
-/**
- * Remove the specified resource from storage.
- *
- * @param int $id
- * @return Response
- */
-public
-function destroy(Dir $dir)
-{
-    //
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Dir $dir
+     * @return RedirectResponse
+     */
+    public
+    function destroy(Dir $dir)
+    {
 
-
-    $location = "public/images/" . $dir['user_id'] . "/" . $dir['title'];
-    // $dir = Dir::findOrFail($id);
-
-    try {
-        if ($dir->delete()) {
-
-            Storage::deleteDirectory($location);
-
-        }
-    } catch (\Exception $e) {
-
+        $this->repository->remove($dir);
+        return redirect()->route('dirs.index');
     }
-    return redirect()->route('dirs.index');
-}
 
 
 }

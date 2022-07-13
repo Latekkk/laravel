@@ -8,6 +8,7 @@ use App\Models\Note;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 
+use App\Repositories\NoteRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,11 +21,22 @@ use Ramsey\Uuid\Type\Integer;
 class NoteController extends Controller
 {
 
+
+    protected NoteRepository $repository;
+
+    public function __construct(NoteRepository $noteRepository)
+    {
+        $this->repository = $noteRepository;
+        $this->authorizeResource(Note::class);
+    }
+
+
     /**
      * Display the registration view.
      *
      * @return \Inertia\Response
      */
+
 
 
 
@@ -66,9 +78,8 @@ class NoteController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $note = new Note($request->all());
 
-        $note->save();
+        $this->repository->create($request);
         return redirect()->route('dirs.show', $request->dir_id);
     }
 
@@ -81,7 +92,7 @@ class NoteController extends Controller
     public function show($id)
     {
         //
-
+        return 0;
     }
 
     /**
@@ -109,9 +120,7 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        $note->title = $request->title;
-        $note->description = $request->description;
-        $note->save();
+        $this->repository->update($request, $note);
         return redirect()->route('dirs.index');
         //
     }
@@ -124,11 +133,7 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
-
-
-        // $dir = Dir::findOrFail($id);
-        $note->delete();
+        $this->repository->remove($note);
         return redirect()->route('dirs.index');
     }
 
