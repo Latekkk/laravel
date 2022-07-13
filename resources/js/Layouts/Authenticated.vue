@@ -33,7 +33,7 @@ const showingNavigationDropdown = ref(false);
 
 
                                 <BreezeNavLink :href="route('dirs.index')" :active="route().current('dirs.index')">
-                                    Dir
+                                    Dirs
                                 </BreezeNavLink>
 
                                 <BreezeNavLink :href="route('dirs.create')" :active="route().current('dirs.create')">
@@ -67,7 +67,6 @@ const showingNavigationDropdown = ref(false);
                                         <BreezeDropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </BreezeDropdownLink>
-
                                     </template>
                                 </BreezeDropdown>
                             </div>

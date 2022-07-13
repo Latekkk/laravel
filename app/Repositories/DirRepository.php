@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\DirRequest;
 use App\Models\Dir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class DirRepository
         $this->model = $model;
     }
 
-    public function create(Request $request)
+    public function create(DirRequest $request)
     {
         $url = $this->saveImage("images/" . $request['user_id'] . "/" . $request['title'] . "/");
         $request['photoURL'] = $url;

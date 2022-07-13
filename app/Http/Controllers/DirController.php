@@ -115,7 +115,7 @@ class DirController extends Controller
     }
 
 
-    public function update(DirRequest $request, Dir $dir): RedirectResponse
+    public function update(DirRequest $request, Dir $dir)
     {
         $this->repository->update($request, $dir);
         return redirect()->route('dirs.index');

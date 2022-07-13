@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NoteRequest;
 use App\Models\Dir;
 use App\Models\Note;
 use App\Models\User;
@@ -38,7 +39,7 @@ class NoteController extends Controller
      */
 
 
-
+//poprawic na requesty
 
     public function index(Dir $dir)
     {
@@ -76,7 +77,7 @@ class NoteController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): RedirectResponse
+    public function store(NoteRequest $request): RedirectResponse
     {
 
         $this->repository->create($request);
@@ -101,7 +102,7 @@ class NoteController extends Controller
      * @param  Note $note
      * @return \Inertia\Response
      */
-    public function edit(Note $note)
+    public function edit(NoteRequest $note)
     {
         return Inertia::render(
             'Notes/Edit',
@@ -118,7 +119,7 @@ class NoteController extends Controller
      * @param Note $note
      * @return RedirectResponse
      */
-    public function update(Request $request, Note $note)
+    public function update(NoteRequest $request, Note $note)
     {
         $this->repository->update($request, $note);
         return redirect()->route('dirs.index');

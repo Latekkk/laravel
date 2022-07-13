@@ -23,7 +23,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('dirs.store'));
+    form.post(route('dirs.store', props.dir));
     console.log('xD');
 };
 </script>

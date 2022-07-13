@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\NoteRequest;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,6 @@ class NoteRepository
     public function create(Request $request)
     {
 
-        $note = new Note($request->all());
         $this->model->create($request->all());
     }
 

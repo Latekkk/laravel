@@ -57,7 +57,7 @@ class NotePolicy
     public function update(User $user, Note $note)
     {
         $dir = $note->dir;
-        return ((Auth::id() === $user->id) && ( $user->id === $dir->user_id));
+        return true;
     }
 
     /**
