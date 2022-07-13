@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Dir;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,12 @@ class DirFactory extends Factory
      */
     public function definition()
     {
+
+
         return [
-            //
+            'user_id' => rand(1,2),
+            'title' => fake()->title(),
+            'photoURL' => 'storage/images/default.jpg',
         ];
     }
 }

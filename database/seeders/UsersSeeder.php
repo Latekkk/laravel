@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dir;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DirSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class DirSeeder extends Seeder
      */
     public function run()
     {
-        Dir::factory()
-            ->count(5)
+        User::factory()
+            ->count(50)
             ->create();
     }
 }

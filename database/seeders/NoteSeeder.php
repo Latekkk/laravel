@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dir;
+use App\Models\Note;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DirSeeder extends Seeder
+class NoteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,8 @@ class DirSeeder extends Seeder
      */
     public function run()
     {
-        Dir::factory()
-            ->count(5)
+        Note::factory()
+            ->count(12)
             ->create();
     }
 }
