@@ -18,12 +18,21 @@ class NoteRepository
     public function create(Request $request)
     {
 
+        $note = new Note($request->all());
+        $this->model->create($request->all());
     }
 
 
-    public function update(Request $request, Dir $dir)
+    public function update(Request $request, Note $note)
     {
+        $note->title = $request->title;
+        $note->description = $request->description;
+        $note->update($request->all());
+    }
 
+    public function remove(Note $note)
+    {
+        $note->delete();
     }
 
 

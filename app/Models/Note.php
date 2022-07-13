@@ -16,6 +16,6 @@ class Note extends Model
 
     public function dir() {
         return $this->belongsTo(Dir::class); //relacje jeden do wielu
-        // wiele do wielu belongsTo
+        // wiele do wielu belongsToMany
     }
 }

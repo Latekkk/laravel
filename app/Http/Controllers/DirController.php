@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\DirRequest;
 use App\Models\Dir;
 use App\Models\Note;
 use App\Models\User;
-use App\Policies\DirPolicy;
-use App\Providers\RouteServiceProvider;
 use App\Repositories\DirRepository;
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
-
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class DirController extends Controller
 {
@@ -39,7 +33,6 @@ class DirController extends Controller
      *
      * @return \Inertia\Response
      */
-
 
     public function index()
     {
@@ -77,8 +70,8 @@ class DirController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param DirRequest $request
+     * @return RedirectResponse
      */
     public function store(DirRequest $request): RedirectResponse
     {
@@ -119,38 +112,29 @@ class DirController extends Controller
                 'dir' => $dir
             ]
         );
-        return 0;
     }
 
 
     public function update(DirRequest $request, Dir $dir): RedirectResponse
     {
-
         $this->repository->update($request, $dir);
         return redirect()->route('dirs.index');
     }
 
 
-/**
- * Remove the specified resource from storage.
- *
- * @param int $id
- * @return Response
- */
-public
-function destroy(Dir $dir)
-{
-    $location = "public/images/" . $dir['user_id'] . "/" . $dir['title'];
-    // $dir = Dir::findOrFail($id);
-    try {
-        if ($dir->delete()) {
-            Storage::deleteDirectory($location);
-        }
-    } catch (\Exception $e) {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Dir $dir
+     * @return RedirectResponse
+     */
+    public
+    function destroy(Dir $dir)
+    {
 
+        $this->repository->remove($dir);
+        return redirect()->route('dirs.index');
     }
-    return redirect()->route('dirs.index');
-}
 
 
 }

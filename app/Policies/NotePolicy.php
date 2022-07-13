@@ -32,7 +32,7 @@ class NotePolicy
      */
     public function view(User $user, Note $note)
     {
-return true;
+        return true;
     }
 
     /**
@@ -44,6 +44,7 @@ return true;
     public function create(User $user)
     {
         //
+        return Auth::id() === $user->id;
     }
 
     /**
@@ -55,11 +56,8 @@ return true;
      */
     public function update(User $user, Note $note)
     {
-        $id = $note->getOriginal();
-        $dir = Dir::find($id);
-
-        dd($dir['0']);
-        return $user->id === $dir->user_id;
+        $dir = $note->dir;
+        return ((Auth::id() === $user->id) && ( $user->id === $dir->user_id));
     }
 
     /**
@@ -72,29 +70,11 @@ return true;
     public function delete(User $user, Note $note)
     {
         //
+        $dir = $note->dir;
+        return ((Auth::id() === $user->id) && ( $user->id === $dir->user_id));
+
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Note $note)
-    {
-        //
-    }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Note $note)
-    {
-        //
-    }
+
 }

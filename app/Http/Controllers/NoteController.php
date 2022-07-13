@@ -22,9 +22,11 @@ class NoteController extends Controller
 {
 
 
-    public function __construct(NoteRepository $noteRespositry)
+    protected NoteRepository $repository;
+
+    public function __construct(NoteRepository $noteRepository)
     {
-        $this->repository = $noteRespositry;
+        $this->repository = $noteRepository;
         $this->authorizeResource(Note::class);
     }
 
@@ -76,9 +78,8 @@ class NoteController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $note = new Note($request->all());
 
-        $note->save();
+        $this->repository->create($request);
         return redirect()->route('dirs.show', $request->dir_id);
     }
 
@@ -91,7 +92,7 @@ class NoteController extends Controller
     public function show($id)
     {
         //
-
+        return 0;
     }
 
     /**
@@ -119,9 +120,7 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        $note->title = $request->title;
-        $note->description = $request->description;
-        $note->save();
+        $this->repository->update($request, $note);
         return redirect()->route('dirs.index');
         //
     }
@@ -134,11 +133,7 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
-
-
-        // $dir = Dir::findOrFail($id);
-        $note->delete();
+        $this->repository->remove($note);
         return redirect()->route('dirs.index');
     }
 

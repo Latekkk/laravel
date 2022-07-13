@@ -12,8 +12,12 @@ class Dir extends Model
         'user_id'
     ];
 
-     public function notes()
-     {
-         return $this->hasMany(Note::class ); // odwrotnosc względem note
-     }
+    public function notes()
+    {
+        return $this->hasMany(Note::class); // odwrotnosc względem note
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

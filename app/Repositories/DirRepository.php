@@ -33,6 +33,18 @@ class DirRepository
         $dir->update($request->all());
     }
 
+    public function remove(Dir $dir) {
+        $location = "public/images/" . $dir['user_id'] . "/" . $dir['title'];
+        // $dir = Dir::findOrFail($id);
+        try {
+            if ($dir->delete()) {
+                Storage::deleteDirectory($location);
+            }
+        } catch (\Exception $e) {
+
+        }
+    }
+
     private function saveImage(String $location): String
     {
         if (request()->hasFile('image')) {
