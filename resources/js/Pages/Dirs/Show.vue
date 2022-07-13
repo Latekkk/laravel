@@ -5,7 +5,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Pagination from "@/Components/Pagination.vue";
 import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import {Head} from '@inertiajs/inertia-vue3';
-import ModalDialog from "@/Components/ModalDialog.vue";
+import ModalRemoveDir from "@/Components/ModalRemoveDir.vue";
 
 const props = defineProps({
     canLogin: Boolean,
@@ -60,7 +60,7 @@ const props = defineProps({
                                                     style="color: white; text-align: center;width: 100px">Edit
                                 </BreezeDropdownLink>
 
-                                   <ModalDialog :note="note"  message="Are you sure you want remove this element?"></ModalDialog>
+                                   <ModalRemoveDir :note="note"  message="Are you sure you want remove this element?"></ModalRemoveDir>
                             </div>
                         </div>
                     </div>

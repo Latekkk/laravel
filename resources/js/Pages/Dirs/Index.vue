@@ -67,10 +67,11 @@ const props = defineProps({
                                     </BreezeDropdownLink>
                                 </li>
                                 <li>
-                                    <BreezeDropdownLink :href="route('dirs.destroy', dir)" as="button" method="delete">
-                                        Remove
-                                    </BreezeDropdownLink>
+<!--                                    <BreezeDropdownLink :href="route('dirs.destroy', dir)" as="button" method="delete">-->
+<!--                                        Remove-->
+<!--                                    </BreezeDropdownLink>-->
 
+                                    <ModalDialog :dir="dir"  message="Are you sure you want remove this folder with all notes?"></ModalDialog>
                                 </li>
                             </ul>
                         </div>
