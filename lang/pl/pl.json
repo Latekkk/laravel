@@ -1,6 +1,5 @@
 {
 
-    "Name" : "Twoje imie",
     "DirUpdate": "Aktualizacja folderu",
     "Title": "Tytuł",
     "Image": "Zdjęcie",
@@ -26,5 +25,10 @@
     "Description is" : "Opis to",
     "add multiple lines" : "Dodaj wiele linii",
     "Description" : "Opis",
-    "Edit dir" : "Edytuj katalog"
+    "Edit dir" : "Edytuj katalog",
+    "Password" : "Hasło",
+    "Remember me" : "Zapamiętaj mnie",
+    "Forgot your password?" : "Zapomniałeś hasła?",
+    "Log in" : "Zaloguj",
+    "Logged in!" : "Jesteś zalogowany!"
 }

@@ -2,5 +2,6 @@
     "Name" : "Your name",
     "DirUpdate": "Dir update",
     "Whoops!" : "Whoops! Something went wrong",
-    "RemoveNoteMessage" : "Are you sure you want remove this element?"
+    "RemoveNoteMessage" : "Are you sure you want remove this element?",
+    "Logged in!" : "You're logged in!"
 }

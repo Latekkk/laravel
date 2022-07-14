@@ -25,6 +25,7 @@
         "laravel-vue-i18n": "^2.1.0",
         "laravel-vue-pagination": "^3.0.0",
         "material-icons": "^1.11.4",
+        "theme-change": "^2.1.0",
         "vue-i18n": "^9.1.10",
         "vue3-promise-dialog": "^0.3.4",
         "vuejs-confirm-dialog": "^0.4.1"
