@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 
 class NoteSeeder extends Seeder
 {
+
+    protected $model = Note::class;
     /**
      * Run the database seeds.
      *

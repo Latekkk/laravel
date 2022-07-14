@@ -21,8 +21,8 @@ class NoteFactory extends Factory
         return [
             //
             'title' => fake() -> title,
-            'description' => Str::random(10),
-            'dir_id' => rand(1,2),
+            'description' => Str::random(255),
+//            'dir_id' => rand(1,2),
         ];
     }
 }

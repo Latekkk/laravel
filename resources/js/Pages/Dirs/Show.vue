@@ -5,7 +5,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Pagination from "@/Components/Pagination.vue";
 import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import {Head} from '@inertiajs/inertia-vue3';
-import ModalRemoveDir from "@/Components/ModalRemoveDir.vue";
+import ModalDialog from "@/Components/ModalDialog.vue";
 
 const props = defineProps({
     canLogin: Boolean,
@@ -16,9 +16,17 @@ const props = defineProps({
     notes: Object,
 });
 
+function str_limit (value, size) {
+    if (!value) return '';
+    value = value.toString();
+
+    if (value.length <= size) {
+        return value;
+    }
+    return value.substr(0, size)+ "...";
+}
 
 </script>
-
 
 
 <template>
@@ -30,17 +38,17 @@ const props = defineProps({
                     <div class="flex-none">
                         <div class="avatar" style="padding: 10px">
                             <div class="w-24 mask mask-squircle">
-                                <img v-bind:src="'../'+dir.photoURL" alt="">
+                                <img :alt="dir.title" v-bind:src="'../'+dir.photoURL">
                             </div>
                         </div>
                     </div>
                     <div class="flex-1 w-64">
                         <div class="flex flex-col items-stretch ">
-                            <p class="text-xl ">Name dir: {{ dir.title }}</p>
+                            <p class="text-xl ">{{$t('Name dir')}}: {{ dir.title }}</p>
                         </div>
                     </div>
                     <div class="flex-1 w-32">
-                        <BreezeDropdownLink :href="route('notes.create', dir)" as="button" method="get">Add notes
+                        <BreezeDropdownLink :href="route('notes.create', dir)" as="button" method="get">{{$t('Add notes')}}
                         </BreezeDropdownLink>
                     </div>
                 </div>
@@ -52,15 +60,22 @@ const props = defineProps({
                     <div class="card w-96 bg-base-100 shadow-xl">
                         <div class="card-body items-center text-center">
                             <h2 class="card-title">{{ note.title }}</h2>
-                            <p class="text-clip overflow-hidden">{{ note.description }}</p>
+                            <p class="truncate hover:text-clip">{{ str_limit(note.description,20) }}</p>
                             <div class="card-actions">
+                                <BreezeDropdownLink :href="route('notes.show', note)" as="button"
+                                                    class="btn btn-accent"
+                                                    method="get"
+                                                    style="color: white; text-align: center;width: 100px">{{$t('Show')}}
+                                </BreezeDropdownLink>
+
                                 <BreezeDropdownLink :href="route('notes.edit', note)" as="button"
                                                     class="btn btn-primary"
                                                     method="get"
-                                                    style="color: white; text-align: center;width: 100px">Edit
+                                                    style="color: white; text-align: center;width: 100px">{{$t('Edit')}}
                                 </BreezeDropdownLink>
 
-                                   <ModalRemoveDir :note="note"  message="Are you sure you want remove this element?"></ModalRemoveDir>
+                                <ModalDialog :note="note"
+                                             :message="$t('RemoveNoteMessage')"></ModalDialog>
                             </div>
                         </div>
                     </div>
@@ -78,5 +93,7 @@ const props = defineProps({
 main {
     padding: 10px;
 }
+
+
 </style>
 

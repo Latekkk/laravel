@@ -1,10 +1,14 @@
 <template>
-        <button
-            @click="openModal"
-            class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out text-white hover:text-black"
-        >
-            {{$t('Remove notes')}}
-        </button>
+
+    <button class="btn btn-outline btn-accent"
+            @click="openModal">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  fill-rule="evenodd"/>
+        </svg>
+
+    </button>
     <TransitionRoot appear :show="isOpen" as="template">
         <Dialog as="div" @close="closeModal" class="relative z-10">
             <TransitionChild
@@ -43,7 +47,7 @@
                             </DialogTitle>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500">
-                                    {{ message }} ({{dir.title}})
+                                    Are you sure, you want remove this element ({{note.title}})
                                 </p>
                             </div>
 
@@ -53,14 +57,14 @@
                                     class="flex inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                     @click="closeModal"
                                 >
-                                    {{ $t('Cancel') }}
+                                    Cancel
                                 </button>
                                 <button
                                     type="button"
                                     class="flex inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                     @click="removeSubmit"
                                 >
-                                    {{ $t('Remove') }}
+                                    remove
                                 </button>
                             </div>
                         </DialogPanel>
@@ -94,13 +98,13 @@ function openModal() {
 }
 
 function removeSubmit() {
-    form.delete(route('dirs.destroy', props.dir));
+    form.delete(route('notes.destroy', props.note));
 }
 
 const props = defineProps({
     toggleModal: false,
     message: '',
-    dir: Object,
+    note: Object,
 });
 
 const form = useForm();

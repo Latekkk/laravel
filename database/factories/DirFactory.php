@@ -21,7 +21,7 @@ class DirFactory extends Factory
 
 
         return [
-            'user_id' => rand(1,2),
+//            'user_id' => rand(1,2),
             'title' => fake()->title(),
             'photoURL' => 'storage/images/default.jpg',
         ];

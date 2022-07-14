@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\NoteRequest;
 use App\Models\Dir;
 use App\Models\Note;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-
 use App\Repositories\NoteRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
-
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
-use Ramsey\Uuid\Type\Integer;
+use Inertia\Response as InertiaResponse;
+
 
 class NoteController extends Controller
 {
@@ -27,7 +22,7 @@ class NoteController extends Controller
     public function __construct(NoteRepository $noteRepository)
     {
         $this->repository = $noteRepository;
-        $this->authorizeResource(Note::class);
+//        $this->authorizeResource(Note::class);
     }
 
 
@@ -38,7 +33,7 @@ class NoteController extends Controller
      */
 
 
-
+//poprawic na requesty
 
     public function index(Dir $dir)
     {
@@ -76,7 +71,7 @@ class NoteController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): RedirectResponse
+    public function store(NoteRequest $request): RedirectResponse
     {
 
         $this->repository->create($request);
@@ -86,22 +81,29 @@ class NoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return InertiaResponse
      */
-    public function show($id)
+    public function show(Note $note): InertiaResponse
     {
-        //
-        return 0;
+        $dir = $note->dir;
+
+        return Inertia::render(
+            'Notes/Show',
+            [
+                'note' => $note,
+                'dir' => $dir,
+            ]
+        );
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Note $note
-     * @return \Inertia\Response
+     * @param Note $note
+     * @return InertiaResponse
      */
-    public function edit(Note $note)
+    public function edit(Note $note): InertiaResponse
     {
         return Inertia::render(
             'Notes/Edit',
@@ -114,11 +116,11 @@ class NoteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param NoteRequest $request
      * @param Note $note
      * @return RedirectResponse
      */
-    public function update(Request $request, Note $note)
+    public function update(NoteRequest $request, Note $note)
     {
         $this->repository->update($request, $note);
         return redirect()->route('dirs.index');
@@ -128,7 +130,7 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy(Note $note)
