@@ -17,7 +17,7 @@ defineProps({
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
-            Dashboard
+                {{ $t('Dashboard') }}
             </Link>
 
             <template v-else>
@@ -26,15 +26,15 @@ defineProps({
                 </Link>
 
                 <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 underline">
-                Register
+                    {{ $t('Register') }}
                 </Link>
 
                 <Link :href="route('dirNote')" class="text-sm text-gray-700 underline">
-                Dir Note
+                    {{ $t('Dir note') }}
                 </Link>
 
                 <Link :href="route('dirs.index')" class="text-sm text-gray-700 underline">
-                Dir
+                    {{ $t('Dir') }}
                 </Link>
 
             </template>
