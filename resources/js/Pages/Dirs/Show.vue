@@ -16,6 +16,15 @@ const props = defineProps({
     notes: Object,
 });
 
+function str_limit (value, size) {
+    if (!value) return '';
+    value = value.toString();
+
+    if (value.length <= size) {
+        return value;
+    }
+    return value.substr(0, size)+ "...";
+}
 
 </script>
 
@@ -51,7 +60,7 @@ const props = defineProps({
                     <div class="card w-96 bg-base-100 shadow-xl">
                         <div class="card-body items-center text-center">
                             <h2 class="card-title">{{ note.title }}</h2>
-                            <p class="truncate hover:text-clip">{{ note.description }}</p>
+                            <p class="truncate hover:text-clip">{{ str_limit(note.description,20) }}</p>
                             <div class="card-actions">
                                 <BreezeDropdownLink :href="route('notes.show', note)" as="button"
                                                     class="btn btn-accent"

@@ -18,7 +18,7 @@ const props = defineProps({
     <BreezeAuthenticatedLayout>
 
         <Head title="List dirs"/>
-        <div class="flex gap-5 flex-wrap w-full p-5">
+        <div class="flex flex-wrap gap-6.5 p-10 p-md-25 py-5 mx-5 ">
             <div v-for="dir in dirs.data" :key="dir.id">
                 <Card :dir="dir"/>
             </div>
