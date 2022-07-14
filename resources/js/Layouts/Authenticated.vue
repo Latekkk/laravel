@@ -28,16 +28,18 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+
+                                    {{ $t('Dashboard') }}
+
                                 </BreezeNavLink>
 
 
                                 <BreezeNavLink :href="route('dirs.index')" :active="route().current('dirs.index')">
-                                    Dirs
+                                    {{ $t('Dirs') }}
                                 </BreezeNavLink>
 
                                 <BreezeNavLink :href="route('dirs.create')" :active="route().current('dirs.create')">
-                                    Dir create
+                                    {{ $t('Dirs create') }}
                                 </BreezeNavLink>
 
                             </div>
@@ -65,7 +67,7 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <BreezeDropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
+                                            {{ $t('Log out') }}
                                         </BreezeDropdownLink>
                                     </template>
                                 </BreezeDropdown>
@@ -96,7 +98,7 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                            {{ $t('Dashboard') }}
                         </BreezeResponsiveNavLink>
                     </div>
 
@@ -109,7 +111,7 @@ const showingNavigationDropdown = ref(false);
 
                         <div class="mt-3 space-y-1">
                             <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                                {{ $t('Log out') }}
                             </BreezeResponsiveNavLink>
                         </div>
                     </div>

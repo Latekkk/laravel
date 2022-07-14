@@ -37,11 +37,12 @@ class DirController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $dir = $user->dirs;
+
+        $dir = Dir::where('user_id', $user->id)->paginate(8);
         return Inertia::render(
             'Dirs/Index',
             [
-                'dirs' => $dir,
+                'dirs' => $dir ,
                 'users' => $user
             ]
         );

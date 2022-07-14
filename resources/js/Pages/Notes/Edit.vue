@@ -42,17 +42,17 @@ const form = useForm({
                 </figure>
                 <div class="card-body">
 
-                    <BreezeLabel for="title" value="Title"/>
+                    <BreezeLabel for="title" :value="$t('Title')"/>
                     <BreezeInput id="title" type="text" class="mt-1 block w-full" v-model="form.title" required
                                  autofocus autocomplete="title" />
 
 
-                    <span>Description is:</span>
-                    <textarea v-model="form.description" placeholder="add multiple lines" ></textarea>
+                    <span>{{ $t('Description is') }}:</span>
+                    <textarea v-model="form.description" :placeholder="$t('add multiple lines')" ></textarea>
 
 
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Edit</button>
+                        <button class="btn btn-primary">{{ $t('Edit') }}</button>
                     </div>
                 </div>
             </div>

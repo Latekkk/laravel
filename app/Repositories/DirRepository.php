@@ -26,11 +26,9 @@ class DirRepository
     }
 
 
-    public function update(Request $request, Dir $dir)
+    public function update(DirRequest $request, Dir $dir)
     {
-        if ($request->has('photoURL')) {
-            $request->photoURL = $this->saveImage("images/" . $dir->user_id . "/" . $request->get('title') . "/");
-        }
+        $request['photoURL'] = $this->saveImage("images/" . $dir->user_id . "/" . $request->get('title') . "/");
         $dir->update($request->all());
     }
 

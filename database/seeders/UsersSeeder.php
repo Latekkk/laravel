@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         User::factory(20)->create()->each(function ($user){
-            Dir::factory(rand(2,4))->create([
+            Dir::factory(rand(12,48))->create([
                 'user_id' => $user->id
             ])->each(function ($dir){
                 Note::factory(rand(2,12))->create([

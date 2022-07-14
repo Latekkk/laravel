@@ -29,7 +29,6 @@ const form = useForm({
 
 const submit = () => {
     form.post(route('notes.store', props.dir));
-    console.log('xD');
 };
 </script>
 
@@ -44,13 +43,13 @@ const submit = () => {
 
         <form @submit.prevent="submit" >
                 <div>
-                    <BreezeLabel for="title" value="Title" />
+                    <BreezeLabel for="title" :value="$t('Title') " />
                     <BreezeInput id="title" type="text" class="mt-1 block w-full" v-model="form.title"
                         autofocus autocomplete="title" />
                 </div>
 
                 <div class="mt-4">
-                    <BreezeLabel for="description" value="Description" />
+                    <BreezeLabel for="description" :value="$t('Description') " />
                     <BreezeInput id="description" type="description" class="mt-1 block w-full" v-model="form.description"
                                   autocomplete="description" />
                 </div>
@@ -59,7 +58,7 @@ const submit = () => {
 
 
                     <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Create note
+                        {{ $t('Creating note') }}
                     </BreezeButton>
                 </div>
             </form>
